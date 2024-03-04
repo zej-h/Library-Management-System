@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {% block title %} {% endblock %}
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+</head>
+
+<body>
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid" style="padding: 0px 30px;">
+            <div>
+                <a class="navbar-brand" href="#">图书管理系统</a>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">{{ name }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">                          
+                            <li><a href="/logout/">注销</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        
+        </div>  
+         
+    </nav>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="container" style="margin:0px; padding: 0px;">
+        <div class="row" style="margin: 0px;">
+            <div class="col-sm-3 col-md-2" style="padding: 70px 0px;background-color: rgb(245,245,245);height: 100vh;">
+                <div class="sidebar">
+                    <ul class="nav navbar-sidebar">
+                        <li><a href="/book/list2/" style="padding: 15px 30px;"><span class="glyphicon glyphicon-search" aria-hidden="true" style="margin-right: 10px;"></span>图书查询</a></li>
+                        <li><a href="/book/modify2/" style="padding: 15px 30px;"><span class="glyphicon glyphicon-tasks" aria-hidden="true" style="margin-right: 10px;"></span>借/还图书</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-9 col-md-10" style="padding: 100px 0px;">
+                <div class="main">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

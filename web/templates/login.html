@@ -1,0 +1,200 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {% block title %} {% endblock %}
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+</head>
+
+    <style>
+        *{
+    /* 初始化 */
+    margin: 0;
+    padding: 0;
+}
+        .container{
+    /* 相对定位 */
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+    border-radius: 15px;
+    /* 弹性布局 垂直排列 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 400px;
+    /* 阴影 */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+        .account h2 {
+            margin-top: 10px;
+            text-align: center;
+        }
+        body {
+    /* 100%窗口高度 */
+    height: 100vh;
+    /* 弹性布局 居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 渐变背景 */
+    background: linear-gradient(200deg,#e3c5eb,#a9c1ed);
+    /* 溢出隐藏 */
+    overflow: hidden;   
+        }
+        ul li{
+    position: absolute;
+    border: 1px solid #fff;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    list-style: none;
+    opacity: 0;
+}
+        .square li{
+    top: 40vh;
+    left: 60vw;
+    /* 执行动画：动画名 时长 线性的 无限次播放 */
+    animation: square 10s linear infinite;
+}
+.square li:nth-child(2){
+    top: 80vh;
+    left: 10vw;
+    /* 设置动画延迟时间 */
+    animation-delay: 2s;
+}
+.square li:nth-child(3){
+    top: 80vh;
+    left: 85vw;
+    /* 设置动画延迟时间 */
+    animation-delay: 4s;
+}
+.square li:nth-child(4){
+    top: 10vh;
+    left: 70vw;
+    /* 设置动画延迟时间 */
+    animation-delay: 6s;
+}
+.square li:nth-child(5){
+    top: 10vh;
+    left: 10vw;
+    /* 设置动画延迟时间 */
+    animation-delay: 8s;
+}
+.circle li{
+    bottom: 0;
+    left: 15vw;
+    /* 执行动画 */
+    animation: circle 10s linear infinite;
+}
+.circle li:nth-child(2){
+    left: 35vw;
+    /* 设置动画延迟时间 */
+    animation-delay: 2s;
+}
+.circle li:nth-child(3){
+    left: 55vw;
+    /* 设置动画延迟时间 */
+    animation-delay: 6s;
+}
+.circle li:nth-child(4){
+    left: 75vw;
+    /* 设置动画延迟时间 */
+    animation-delay: 4s;
+}
+.circle li:nth-child(5){
+    left: 90vw;
+    /* 设置动画延迟时间 */
+    animation-delay: 8s;
+}
+
+/* 定义动画 */
+@keyframes square {
+    0%{
+        transform: scale(0) rotateY(0deg);
+        opacity: 1;
+    }
+    100%{
+        transform: scale(5) rotateY(1000deg);
+        opacity: 0;
+    }
+}
+@keyframes circle {
+    0%{
+        transform: scale(0) rotateY(0deg);
+        opacity: 1;
+        bottom: 0;
+        border-radius: 0;
+    }
+    100%{
+        transform: scale(5) rotateY(1000deg);
+        opacity: 0;
+        bottom: 90vh;
+        border-radius: 50%;
+    }
+}
+    </style>
+</head>
+<body>
+<div class="main">
+
+<div class="container" >
+    <center><h3 style="margin-top: 50px;">欢迎进入图书管理系统</h3></center>
+    <h2>用户登录</h2>
+    <div style="margin-bottom:20px"> </div>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-defaut" type="button">账户</button>
+            </span>
+            {{ form.id }}
+            <span style="color: red;">{{ form.username.errors.0 }}</span>
+        </div>
+        <div style="margin-bottom:20px"> </div>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-defaut" type="button">密码</button>
+            </span>
+            {{ form.password }}
+            <center><span style="color: red;">{{ form.password.errors.0 }}</span></center>
+        </div>
+        <div style="margin-bottom:20px"> </div>
+        <center>
+        <input type="submit" name="admin_login" value="管理员登录" class="btn btn-primary"  style="float: left;">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="submit" name="reader_login" value="读者登录" class="btn btn-primary"style="float: right;">
+        </center>   
+        <div style="margin-bottom:30px"> </div>
+        <div style="text-align:center;">
+            <span>没有账号？<a href="/register/">去注册</a></span>
+        </div>
+        
+        <div style="margin-bottom:10px"> </div>
+    </form>
+</div>
+<div class="square">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="circle">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>

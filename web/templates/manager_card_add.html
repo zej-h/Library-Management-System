@@ -1,0 +1,36 @@
+{% extends 'layout1.html' %}
+
+{% block title %} 
+<title>新建借书证</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">新建借书证</h3>
+        </div>
+        <div class="panel-body">
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                {% for field in form %}
+                <div class="form-group">
+                    <div class="input-group"> 
+                    <span class="input-group-btn">
+                        <button class="btn btn-defaut" type="button">{{ field.label }}</button>
+                    </span>
+                    {{ field }}
+                    </div>
+                    <div style="margin-bottom:15px"> </div>
+                    <span style="color:red;">{{ field.errors.0 }}</span>
+                    {% endfor %}
+                </div>
+                <center><button type="submit" class="btn btn-primary" style="margin-right: 20px;">创建</button>
+                <a href="/manager/card/" class="btn btn-primary">返回</a>
+                </center>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

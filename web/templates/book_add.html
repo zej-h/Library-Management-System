@@ -1,0 +1,38 @@
+{% extends 'layout1.html' %} 
+
+{% block title %} 
+<title>图书入库</title>
+{% endblock %}
+
+{% block content %} 
+<div class="container">
+    <h1><strong><center>图书入库</center></strong></h1>
+    <div style="margin-bottom:30px"> </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+            图书入库
+        </div>
+        <div class="panel-body">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                
+                {% for field in form %}
+                <div class="form-group">
+                  <div class="input-group">   
+                    <span class="input-group-btn">
+                        <button class="btn btn-defaut" type="button">{{ field.label }}</button>
+                    </span>
+                    {{ field }}
+                  </div>
+                  <span style="color:red;">{{ field.errors.0 }}</span>
+                </div>
+                {% endfor %}
+                <center><button type="submit" class="btn btn-primary">图书入库</button></center>
+              </form>
+              
+        </div>
+    </div>
+</div>
+<center><span style="color:coral;">{{suc_msg}}</span></center>
+{% endblock %} 

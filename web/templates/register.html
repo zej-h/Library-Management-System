@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {% block title %} {% endblock %}
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+</head>
+
+    <style>
+        *{
+    /* 初始化 */
+    margin: 0;
+    padding: 0;
+}
+        .container{
+    /* 相对定位 */
+    position: relative;
+    z-index: 10;
+    background-color: #fff;
+    border-radius: 15px;
+    /* 弹性布局 垂直排列 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 400px;
+    /* 阴影 */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+        .account h2 {
+            margin-top: 10px;
+            text-align: center;
+        }
+        body {
+    /* 100%窗口高度 */
+    height: 100vh;
+    /* 弹性布局 居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 渐变背景 */
+    background: linear-gradient(200deg,#e3c5eb,#a9c1ed);
+    /* 溢出隐藏 */
+    overflow: hidden;   
+        }
+
+    </style>
+</head>
+<body>
+<div class="main">
+
+<div class="container" >
+    <h3 style="margin-top: 30px;">用户注册</h3>
+    <div style="margin-bottom:20px"> </div>
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="form-group">
+            <div class="input-group"> 
+            <span class="input-group-btn">
+                <button class="btn btn-defaut" type="button">{{ field.label }}</button>
+            </span>
+            {{ field }}
+            </div>
+            <div style="margin-bottom:15px"> </div>
+            <span style="color:red;">{{ field.errors.0 }}</span>
+            {% endfor %}
+        </div>
+        <center><button type="submit" class="btn btn-primary"style="margin-right: 20px;">创建</button>
+        <a href="/login/" class="btn btn-primary">返回</a></center>
+    </form>
+</div>
+
+</div>
+</body>
+</html>
